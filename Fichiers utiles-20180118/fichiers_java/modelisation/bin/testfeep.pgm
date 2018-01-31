@@ -1,0 +1,7 @@
+P2
+# Affiche le mot "FEEP" (exemple de la page principale de Netpbm à propos de PGM)
+13 3
+15
+0  0  0  0  0  0  0  0  0  0  0  0  0   
+0  3  3  3  3  0  0  7  7  7  7  0  0   
+0  3  0  0  0  0  0  7  0  0  0  0  0  
