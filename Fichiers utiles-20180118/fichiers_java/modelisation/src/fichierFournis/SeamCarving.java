@@ -117,8 +117,9 @@ public class SeamCarving
    public static Graph tograph(int[][] itr){
 	   int hauteur = itr.length;
 	   int largeur = itr[0].length;
-	   Graph graph = new Graph(itr.length*itr[0].length+2);
 	   int n = hauteur*largeur+2;//taille du graphe
+	   Graph graph = new Graph(n);
+	   
 	   for(int j=0;j<itr[0].length;j++){
 
 		   graph.addEdge(new Edge(graph.vertices()-1,j,0 ));//premiere ligne
@@ -154,25 +155,38 @@ public class SeamCarving
 
    
    
-   public static Heap Dijkstra(Graph g, int s, int t){
-	   
-	   Heap dijkstra = new Heap(g.vertices());
-	   dijkstra.decreaseKey(g.vertices()-1, 0);
-	   
-	   return dijkstra;
-	   /*int[] tab= new int[g.vertices()];
-	   for(int i =0; i< tab.length; i++) {
-		   tab[i] = 999999999;
+   public static int[] Dijkstra(Graph g, int s, int t){
+	   int[] tab;
+	   int[] predecesseur = new int[g.vertices()];
+	   ArrayList<Integer> suite = new ArrayList<>();
+	   Heap tas = new Heap(g.vertices());
+	   tas.decreaseKey(g.vertices()-1, 0);
+	   int min, tfin;
+	   while(!tas.isEmpty()){
+		   
+		   min = tas.pop();
+		   for(Edge e : g.adj(min)){
+			   if(tas.priority(e.to)>tas.priority(min)+e.cost){
+				   tas.decreaseKey(e.to, tas.priority(min)+e.cost);
+				   predecesseur[e.to] = min;
+			   }
+		   }
 	   }
-	   tab[g.vertices()-1]=0;*/
-	   //while
-	  /* au départ : 
-	   * d[u] = 0, d[v] = +infini
-	   * tant qu'il reste des sommet non visité 
-	   * 	on visite le sommet v qui a la plus petite valeur de d[v]. 
-	   * 	on met ensuite à jour les valuer d[w] pour les voisin de v : 
-	   * 	si d[v]+c(v,w)<d[w] alors on change la valuer de d[w]*/
-	   //return tab;
+	   
+	   tfin = predecesseur[t];
+	   while(tfin != s){
+		   suite.add(tfin);
+		   tfin = predecesseur[tfin];
+	   }
+	   tab = new int[suite.size()];
+	   for(int i =0 ; i < suite.size(); i++){
+		   tab[i] = suite.get(i);
+	   }
+
+	   return tab;
+	   
+
+	 
    }
 
    

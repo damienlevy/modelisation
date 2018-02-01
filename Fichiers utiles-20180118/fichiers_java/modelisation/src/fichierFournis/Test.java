@@ -63,8 +63,16 @@ class Test
    
    public static void testInterest(){
 	   int[][] test;// = new int[376][476];
-	   test = SeamCarving.interest(SeamCarving.readpgm("ex1.pgm"));
+	   test = SeamCarving.interest(SeamCarving.readpgm("test.pgm"));
 	   SeamCarving.writepgm(test, "Testinterest.pgm");
+	   for (int i=0; i<test.length;i++){
+		   for(int j =0; j<test[0].length;j++){
+			   
+		   
+		   System.out.print("["+test[i][j]+"]");
+		   }
+		   System.out.println("");
+	   }
 	
    }
    public static void testTographe(){
@@ -75,12 +83,21 @@ class Test
 	   g.writeFile("testpgm.dot");
 	   
    }
+   public static void testDijkstra(){
+	   int[][] test = SeamCarving.interest(SeamCarving.readpgm("test.pgm"));
+	   Graph g = SeamCarving.tograph(test);
+	   int[] tDijkstra = SeamCarving.Dijkstra(g, g.vertices()-1, g.vertices()-2);
+	   for (int i=0; i<tDijkstra.length;i++){
+		   System.out.println("["+tDijkstra[i]+"]");
+	   }
+   }
    public static void main(String[] args)
 	 {
-		testHeap();
-		testGraph();
+		//testHeap();
+		//testGraph();
 		//testWritepgm();
-	   //testInterest();
-		testTographe();
+	   testInterest();
+		//testTographe();
+	   testDijkstra();
 	 }
 }

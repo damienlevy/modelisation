@@ -5,4 +5,5 @@
 <fullyQualifiedTypeName name="fichierFournis.Graph"/>
 <fullyQualifiedTypeName name="fichierFournis.SeamCarving"/>
 <fullyQualifiedTypeName name="fichierFournis.Edge"/>
+<fullyQualifiedTypeName name="fichierFournis.Heap"/>
 </qualifiedTypeNameHistroy>
