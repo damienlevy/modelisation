@@ -85,25 +85,30 @@ public class SeamCarving
 
    public static int[][] interest (int[][] image){
 	   int pixelCourant, pixelPrecedent, pixelSuivant,moyPrecSuivant;
-	   int[][] interet = new int[image.length][image[0].length] ;
+	   int largeur ,hauteur;
+	   largeur = image[0].length;
+	   hauteur = image.length;
+	   int[][] interet = new int[hauteur][largeur] ;
 	   //i lignes j colonnes
 	   for (int i=0;i<image.length;i++){
 		   for(int j=0;j<image[0].length;j++){
 			   pixelCourant = image[i][j];
-			   if((j-1)<0){
+			   if((j>0) && (j<largeur-1)){
 				   pixelSuivant = image[i][j+1];
-				   interet[i][j] = Math.abs(pixelCourant-pixelSuivant);
+				   pixelPrecedent = image[i][j-1];
+				   moyPrecSuivant = ((pixelSuivant+pixelPrecedent)/2);
+				   
+				   interet[i][j] = Math.abs(pixelCourant-moyPrecSuivant);
+				   ///////////
+				   
 			   }
-			   else if((j+1)>image.length){
+			   else if(j>0){
 				   pixelPrecedent = image[i][j-1];
 				   interet[i][j] = Math.abs(pixelCourant-pixelPrecedent);
 			   }
-			   else{
+			   else {
 				   pixelSuivant = image[i][j+1];
-				   pixelPrecedent = image[i][j-1];
-				   moyPrecSuivant = Math.abs((pixelSuivant+pixelPrecedent)/2);
-				   
-				   interet[i][j] = Math.abs(pixelCourant-moyPrecSuivant);
+				   interet[i][j] = Math.abs(pixelCourant-pixelSuivant);
 			   }
 			   //System.out.print(interet[i][j]+" ");
 			   
@@ -155,8 +160,8 @@ public class SeamCarving
 
    
    
-   public static int[] Dijkstra(Graph g, int s, int t){
-	   int[] tab;
+   public static ArrayList<Integer> dijkstra(Graph g, int s, int t){
+	   //int[] tab;
 	   int[] predecesseur = new int[g.vertices()];
 	   ArrayList<Integer> suite = new ArrayList<>();
 	   Heap tas = new Heap(g.vertices());
@@ -178,16 +183,28 @@ public class SeamCarving
 		   suite.add(tfin);
 		   tfin = predecesseur[tfin];
 	   }
-	   tab = new int[suite.size()];
+	   
+	   //transformer la liste en tab
+	   /*tab = new int[suite.size()];
+	   
 	   for(int i =0 ; i < suite.size(); i++){
 		   tab[i] = suite.get(i);
+		   //System.out.println("tab["+i+"]="+tab[i]);
 	   }
-
-	   return tab;
+	   int tmp;
+	   for(int i=0;i<tab.length/2;i++) {
+		   tmp = tab[i];
+		   tab[i] = tab[tab.length-i-1];
+		   tab[tab.length-i-1]=tmp;
+	   }
+	   
+	   */
+	   return suite;
 	   
 
 	 
    }
+   
 
    
 }
