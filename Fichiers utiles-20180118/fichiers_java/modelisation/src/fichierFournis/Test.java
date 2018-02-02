@@ -2,8 +2,6 @@ package fichierFournis;
 
 import java.util.ArrayList;
 
-import javax.swing.plaf.synth.SynthSeparatorUI;
-
 class Test
 {
    static boolean visite[];
@@ -66,7 +64,7 @@ class Test
    }
    
    public static void testInterest(){
-	   int[][] test = new int[376][476];//{{1,2,3},{1,2,3},{1,2,3}};
+	   int[][] test = new int[376][476];//{{1,2,3,4},{1,2,3,4},{1,2,3,4}};//s
 	   //afficheTableau(test);
 	   test = SeamCarving.interest(SeamCarving.readpgm("test.pgm"));
 	   SeamCarving.writepgm(test, "Testfeeep.pgm");
@@ -81,7 +79,10 @@ class Test
 	
    }
    public static void testTographe(){
-	   int[][] test = SeamCarving.interest(SeamCarving.readpgm("test.pgm"));
+	   int[][] test = {{3,11,24,39}
+	   	,{8,21,29,39}
+	   	,{200,60,25,0}};//SeamCarving.interest(SeamCarving.readpgm("test.pgm"));
+	   afficheTableau(test);
 	   System.out.println("taille test[] : "+test.length+"\n" +
 	   		"taille test[][] :"+test[0].length);
 	   Graph g = SeamCarving.tograph(test);
@@ -194,7 +195,7 @@ class Test
 		//testHeap();
 		//testGraph();
 		//testWritepgm();
-	  // testInterest();
+	   //testInterest();
 		//testTographe();
 	   //testDijkstra();
 	 }

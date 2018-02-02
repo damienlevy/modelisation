@@ -21,7 +21,7 @@ public class TraitementImage {
 		hauteur = imageModifiée.length;
 		largeur = imageModifiée[0].length;
 		System.out.println("taille image initial (hauteur * largeur) : "+hauteur+" * "+largeur);
-		System.out.println("nombre de pixel à enlever : "+pixelSuppr+" pixels par ligne");
+		System.out.println("nombre de pixel à enlever :"+pixelSuppr+" pixels par ligne");
 		ArrayList<Integer> colonne = new ArrayList<>(); 
 		
 		

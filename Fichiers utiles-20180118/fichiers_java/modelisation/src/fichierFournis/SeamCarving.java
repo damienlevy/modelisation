@@ -119,26 +119,93 @@ public class SeamCarving
 	   return interet;
    }
    
+//avec fonction d'énergie avant
+   public static Graph tograph(int[][] itr) {
+	   int hauteur = itr.length;
+	   int largeur = itr[0].length;
+	   int n = hauteur*largeur+2;//taille du graphe
+	   Graph graph = new Graph(n);
+	   int pixelSuivant,pixelPrecedent,pixelDessous;
+	   
+	   
+	   
+	   for(int i=0; i<hauteur-1;i++){
+		   for(int j =0; j<largeur;j++){
+			   
+			
+				   pixelDessous = itr[i+1][j];
+			   
+			   if(j==0) {
+				   pixelPrecedent = 0;
+			   }else {
+				   pixelPrecedent = itr[i][j-1];
+			   }
+			   if(j==largeur-1) {
+				   pixelSuivant = 0;
+			   }else {
+			   
+				   pixelSuivant = itr[i][j+1];
+			   }
+			   
+			   
+			   if(j==0) {
+				   pixelSuivant = itr[i][j+1];
+				   graph.addEdge(new Edge(i*largeur+j,(1+i)*largeur+j,Math.abs( pixelSuivant)));//source destination cout, i+1,j
+				   //System.out.println("vers i+1 ,j="+pixelSuivant);
+				   graph.addEdge(new Edge(i*largeur+j, (1+i)*largeur+(j+1),Math.abs( pixelSuivant-pixelDessous)));
+				   //System.out.println("vers i+1,j+1="+Math.abs( pixelSuivant-pixelDessous));
+			   }else if(j==largeur-1) {
+				   pixelPrecedent = itr[i][j-1];
+				   graph.addEdge(new Edge(i*largeur+j,(1+i)*largeur+j, pixelPrecedent));//i+1,j
+				   graph.addEdge(new Edge(i*largeur+j, (1+i)*largeur+(j-1), Math.abs(pixelPrecedent-pixelDessous)));//i+1,j-1
+				   
+			   }else {
+
+				   graph.addEdge(new Edge(i*largeur+j, (1+i)*largeur+(j+1), Math.abs(pixelSuivant-pixelDessous)));
+				   graph.addEdge(new Edge(i*largeur+j,(1+i)*largeur+j, Math.abs(pixelSuivant-pixelPrecedent)));//i+1,j
+				   graph.addEdge(new Edge(i*largeur+j, (1+i)*largeur+(j-1),Math.abs( pixelPrecedent-pixelDessous)));//i+1,j-1
+			   }//fin if
+		   }//fin for j
+		   
+	   }//fin for i
+	   for(int j=0;j<itr[0].length;j++){
+		   if(j==0) {
+			   pixelPrecedent = 0;
+		   }else {
+			   pixelPrecedent = itr[hauteur-1][j-1];
+		   }
+		   if(j==largeur-1) {
+			   pixelSuivant = 0;
+		   }else {
+		   
+			   pixelSuivant = itr[hauteur-1][j+1];
+		   }
+		   
+		   //System.out.println(((largeur)*(hauteur-1))+j);
+		   graph.addEdge(new Edge(graph.vertices()-1,j,0 ));//premiere ligne
+		   graph.addEdge(new Edge(((hauteur-1)*largeur)+j,hauteur*largeur,Math.abs(pixelPrecedent-pixelSuivant)));  //derniere ligne
+
+	   }
+	   
+	   return graph;
+   }
+   /*
+    //sans optimisation
    public static Graph tograph(int[][] itr){
 	   int hauteur = itr.length;
 	   int largeur = itr[0].length;
 	   int n = hauteur*largeur+2;//taille du graphe
 	   Graph graph = new Graph(n);
-	   
-	   for(int j=0;j<itr[0].length;j++){
 
-		   graph.addEdge(new Edge(graph.vertices()-1,j,0 ));//premiere ligne
-		   //g.addEdge(new Edge(n*n+1, j, 0));
-	   }
 	   for(int i=0; i<hauteur-1;i++){
 		   for(int j =0; j<largeur;j++){
 			   graph.addEdge(new Edge(i*largeur+j,(1+i)*largeur+j, itr[i][j]));//source destination cout
 			   if(j==0){
-				   graph.addEdge(new Edge(i*largeur+j, (1+i)*largeur+(j+1), itr[i][j]));//arete gauche
+				   graph.addEdge(new Edge(i*largeur+j, (1+i)*largeur+(j+1), itr[i][j]));//arete droite
 				   
 			   }else if(j==itr[0].length-1){
 				   
-				   graph.addEdge(new Edge(i*largeur+j, (1+i)*largeur+(j-1), itr[i][j]));//arete droite
+				   graph.addEdge(new Edge(i*largeur+j, (1+i)*largeur+(j-1), itr[i][j]));//arete gauche
 			   }else{
 				   graph.addEdge(new Edge(i*largeur+j, (1+i)*largeur+(j-1),itr[i][j] ));
 				   graph.addEdge(new Edge(i*largeur+j, (1+i)*largeur+(j+1), itr[i][j]));
@@ -148,7 +215,7 @@ public class SeamCarving
 
 	   for(int j=0;j<itr[0].length;j++){
 		   //System.out.println(((largeur)*(hauteur-1))+j);
-		  
+		   graph.addEdge(new Edge(graph.vertices()-1,j,0 ));//premiere ligne
 		   graph.addEdge(new Edge(((hauteur-1)*largeur)+j,hauteur*largeur,itr[hauteur-1][j]));  
 
 	   }
@@ -158,7 +225,7 @@ public class SeamCarving
    }
    
 
-   
+   */
    
    public static ArrayList<Integer> dijkstra(Graph g, int s, int t){
 
