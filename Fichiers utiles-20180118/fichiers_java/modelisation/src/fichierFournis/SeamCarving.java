@@ -99,7 +99,7 @@ public class SeamCarving
 				   moyPrecSuivant = ((pixelSuivant+pixelPrecedent)/2);
 				   
 				   interet[i][j] = Math.abs(pixelCourant-moyPrecSuivant);
-				   ///////////
+				   
 				   
 			   }
 			   else if(j>0){
@@ -161,7 +161,7 @@ public class SeamCarving
    
    
    public static ArrayList<Integer> dijkstra(Graph g, int s, int t){
-	   //int[] tab;
+
 	   int[] predecesseur = new int[g.vertices()];
 	   ArrayList<Integer> suite = new ArrayList<>();
 	   Heap tas = new Heap(g.vertices());
@@ -184,21 +184,6 @@ public class SeamCarving
 		   tfin = predecesseur[tfin];
 	   }
 	   
-	   //transformer la liste en tab
-	   /*tab = new int[suite.size()];
-	   
-	   for(int i =0 ; i < suite.size(); i++){
-		   tab[i] = suite.get(i);
-		   //System.out.println("tab["+i+"]="+tab[i]);
-	   }
-	   int tmp;
-	   for(int i=0;i<tab.length/2;i++) {
-		   tmp = tab[i];
-		   tab[i] = tab[tab.length-i-1];
-		   tab[tab.length-i-1]=tmp;
-	   }
-	   
-	   */
 	   return suite;
 	   
 

@@ -4,8 +4,6 @@ import java.util.ArrayList;
 
 import javax.swing.plaf.synth.SynthSeparatorUI;
 
-import logiciel.TraitementImage;
-
 class Test
 {
    static boolean visite[];
@@ -149,96 +147,36 @@ class Test
    public static void testDijkstra(){
 		  
 	   int pixelSuppr=50;
-		   int y =0;
-		   
-		   int[][] image = SeamCarving.readpgm("ex1.pgm");
-		   //int[][] nouvelleImage;
-		   int hauteur = image.length;
-		   int largeur = image[0].length;
-		   int n = hauteur*largeur+2;
-		   
-		   ArrayList<Integer> quovadis = new ArrayList<>();
-		   
-		   System.out.println("taille image initial (hauteur * largeur) : "+hauteur+" * "+largeur);
-		   //afficheTableau(image);//affichage du tableau initial
+	   
+	   int[][] image = SeamCarving.readpgm("ex1.pgm");
+	   int hauteur = image.length;
+	   int largeur = image[0].length;
+	   ArrayList<Integer> quovadis = new ArrayList<>();
+	   
+	   System.out.println("taille image initial (hauteur * largeur) : "+hauteur+" * "+largeur);
+	   //afficheTableau(image);//affichage du tableau initial
 		   
 		   
-		   
-		   //afficheTableau(image); 
-		   //quovadis = traitementColone(image);
-		   //image = arrayListToTabImage(quovadis, hauteur,largeur-2);
-		   
-		   
-		   for(int pilote = 0 ; pilote < pixelSuppr ; pilote++ ) {
-			   
-			
-			   quovadis = traitementColone(image);
-			   image = arrayListToTabImage(quovadis, hauteur,largeur-(pilote+1));
-		   
-		   //System.out.println("pilote = "+pilote);
-		     
-			   //test = SeamCarving.interest(image);
-		   }//fin for pilote
-		   
-		   
-		   
-		   /*for(int w = 0; w < 150 ;w++) {
-			   g = SeamCarving.tograph(test);
-			   tDijkstra = SeamCarving.dijkstra(g, g.vertices()-1, g.vertices()-2);
-			   //x = tDijkstra.length-1;
-			  // for (int i=0; i<tDijkstra.length;i++){
-				   //System.out.println("["+tDijkstra[i]+"]");
-			   //}
-			   //System.out.println("tdjikstra = "+tDijkstra.length);
-			   //System.out.println("largeur = "+largeur+"\nhauteur = "+hauteur);
-			  // x = 0;
-		   
-			   
-			   for(int i =0 ; i<hauteur ;i++) {
-				   //System.out.println("i = "+i);
-				
-				   y=0;
-				   
-				   for(int j =0 ; j< largeur;j++) {
-					   //System.out.println("\tj = "+j);
-					   //System.out.println("\ttDijkstra = "+tDijkstra[x]);
-					   
-					   if(!((i*largeur+j)== tDijkstra[i])) {
-						   //xxx = x*largeur+j;
-						
-						   //System.out.println("\t\t tDijkstra[i] " + tDijkstra[i]);
-						   //System.out.println("\t\t i*largeur+j " + xxx);
-						   nouvelleImage[i][y] = image[i][j];
-						   //System.out.println("\\t\\tdans le if, apres nouvelle image");
-						   y += 1;
-						   //System.out.println("\t\ty ="+y);
-						   //  if(x>0) {
-						   // x -=1;}
-					   }
-				   }
-			  
-				 //  x +=1;
-			   }
-			   test = SeamCarving.interest(nouvelleImage);
-		   }*/
-		   String nom = "copieEx1.pgm";
-		   
-		 
-		   SeamCarving.writepgm(image, nom);//ecriture de l'image
-		 //copie du tableau de l'image initial
+	   for(int pilote = 0 ; pilote < pixelSuppr ; pilote++ ) {
 		
+		   quovadis = traitementColone(image);
+		   image = arrayListToTabImage(quovadis, hauteur,largeur-(pilote+1));
 		   
+	   }//fin for pilote
 
-		   hauteur = image.length;
-		   largeur = image[0].length;
-		   System.out.println("nouvelle image créée!! ");
-		   System.out.println("nom : "+nom);
+	   String nom = "copieEx1.pgm";
+		   
+	   SeamCarving.writepgm(image, nom);//ecriture de l'image
+	
+	   hauteur = image.length;
+	   largeur = image[0].length;
+	   System.out.println("nouvelle image créée!! ");
+	   System.out.println("nom : "+nom);
 		 
 		 
-		 //copie du tableau de l'image créée
-		   //afficheTableau(image);
-		//afficheTableau(nouvelleImage);
-		   System.out.println("taille image final  (hauteur * largeur) : "+hauteur+" * "+largeur);
+	 //copie du tableau de l'image créée
+	   //afficheTableau(image);
+	   System.out.println("taille image final  (hauteur * largeur) : "+hauteur+" * "+largeur);
    }
    
     static void afficheTableau(int[][]tab) {
@@ -256,7 +194,7 @@ class Test
 		//testHeap();
 		//testGraph();
 		//testWritepgm();
-	   testInterest();
+	  // testInterest();
 		//testTographe();
 	   //testDijkstra();
 	 }
