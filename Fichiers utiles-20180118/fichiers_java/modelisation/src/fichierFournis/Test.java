@@ -59,7 +59,7 @@ class Test
 		dfs(g, 3);
 	 }
    public static void testWritepgm(){
-	   SeamCarving.writepgm(SeamCarving.readpgm("ex1.pgm"), "test1.pgm");
+	   SeamCarving.writepgm(SeamCarving.readpgm("test.pgm"), "test1.pgm");
 	   System.out.println("test : creation test1.pgm");
    }
    
@@ -179,6 +179,25 @@ class Test
 	   //afficheTableau(image);
 	   System.out.println("taille image final  (hauteur * largeur) : "+hauteur+" * "+largeur);
    }
+   static void testquartDeTour() {
+	   
+	   int[][] test = {{3,11,24,39}
+	   	,{8,21,29,39}
+	   	,{200,60,25,0}};
+	   afficheTableau(test);
+	   test = quartDeTour(test);
+	   afficheTableau(test);
+	   
+   }
+	static int[][] quartDeTour(int[][] tab){
+		int [][] t= new int[tab[0].length][tab.length];
+		for(int i =0; i<tab.length;i++) {
+			for(int j =0 ;j<tab[0].length;j++) {
+				t[j][i] = tab[i][j];
+			}
+		}
+		return t;
+	}
    
     static void afficheTableau(int[][]tab) {
 	   for (int i=0; i<tab.length;i++){
@@ -192,11 +211,12 @@ class Test
    }
    public static void main(String[] args)
 	 {
-		//testHeap();
-		//testGraph();
-		//testWritepgm();
-	   //testInterest();
-		//testTographe();
-	   //testDijkstra();
+		/*testHeap();
+		testGraph();
+		testWritepgm();
+		testInterest();
+		testTographe();
+	   testDijkstra();*/
+	   testquartDeTour();
 	 }
 }

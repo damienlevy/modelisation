@@ -3,6 +3,7 @@ package fichierFournis;
 import java.util.ArrayList;
 import java.io.*;
 import java.util.*;
+
 public class SeamCarving
 {
 
@@ -55,6 +56,7 @@ public class SeamCarving
 	 {		
         try {
             InputStream f = ClassLoader.getSystemClassLoader().getResourceAsStream(fn);
+            
             BufferedReader d = new BufferedReader(new InputStreamReader(f));
             String magic = d.readLine();
             String line = d.readLine();
