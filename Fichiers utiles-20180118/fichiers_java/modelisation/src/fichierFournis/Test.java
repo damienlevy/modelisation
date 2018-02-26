@@ -221,9 +221,11 @@ class Test
 		/*testHeap();
 		testGraph();
 		testWritepgm();
+
 		testInterest();*/
 		testTographe();
 	   /*testDijkstra();
 	   testquartDeTour();*/
+
 	 }
 }

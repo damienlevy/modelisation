@@ -31,7 +31,7 @@ public class TraitementImage {
 		
 		/*traitement de l'image colonne par colonne*/
 		for(int i = 0; i<pixelSuppr; i++) {
-			
+
 			colonne = traitementColonne(imageModifiée);
 			imageModifiée = arrayListToTabImage(colonne, hauteur, largeur-(i+1));
 		}//fin for
@@ -40,6 +40,7 @@ public class TraitementImage {
 		/******************/
 		/*ligne*/
 		/*******************/
+
 		imageModifiée = quartDeTour(imageModifiée);
 		hauteur = imageModifiée.length;
 		largeur = imageModifiée[0].length;
@@ -49,12 +50,14 @@ public class TraitementImage {
 		
 		
 		/*traitement de l'image ligne par ligne*/
+
 		for(int i = 0; i<pixelSuppr; i++) {
 			
 			colonne = traitementColonne(imageModifiée);
 			imageModifiée = arrayListToTabImage(colonne, hauteur, largeur-(i+1));
 		}//fin for
 		imageModifiée = quartDeTour(imageModifiée);
+
 		/******************/
 		/*fin ligne*/
 		/*******************/
@@ -65,6 +68,7 @@ public class TraitementImage {
 		System.out.println("taille de "+nom+" (hauteur * largeur) : "+hauteur+" * "+largeur);
 	}
 	
+
 	private int[][] quartDeTour(int[][] tab){
 		int [][] t= new int[tab[0].length][tab.length];
 		for(int i =0; i<tab.length;i++) {
