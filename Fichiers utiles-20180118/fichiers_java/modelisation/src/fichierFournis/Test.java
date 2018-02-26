@@ -59,7 +59,7 @@ class Test
 		dfs(g, 3);
 	 }
    public static void testWritepgm(){
-	   SeamCarving.writepgm(SeamCarving.readpgm("ex1.pgm"), "test1.pgm");
+	   SeamCarving.writepgm(SeamCarving.readpgm("test.pgm"), "test1.pgm");
 	   System.out.println("test : creation test1.pgm");
    }
    
@@ -79,13 +79,20 @@ class Test
 	
    }
    public static void testTographe(){
-	   int[][] test = {{3,11,24,39}
-	   	,{8,21,29,39}
-	   	,{200,60,25,0}};//SeamCarving.interest(SeamCarving.readpgm("test.pgm"));
+	   int[][] test = 
+		   {{3,11,24,39}
+		   ,{8,21,29,39}
+		   ,{20,60,25,0}
+		   ,{50,45,21,15}
+		   ,{8,21,29,39}
+		   ,{24,60,25,0}
+		   ,{50,15,21,15}
+		   /*,{50,4,21,15}*/
+		   };//SeamCarving.interest(SeamCarving.readpgm("test.pgm"));
 	   afficheTableau(test);
 	   System.out.println("taille test[] : "+test.length+"\n" +
 	   		"taille test[][] :"+test[0].length);
-	   Graph g = SeamCarving.tograph(test);
+	   Graph g = SeamCarving.tographOptimise(test);
 	   g.writeFile("testpgm.dot");
 	   
    }
@@ -179,6 +186,25 @@ class Test
 	   //afficheTableau(image);
 	   System.out.println("taille image final  (hauteur * largeur) : "+hauteur+" * "+largeur);
    }
+   static void testquartDeTour() {
+	   
+	   int[][] test = {{3,11,24,39}
+	   	,{8,21,29,39}
+	   	,{200,60,25,0}};
+	   afficheTableau(test);
+	   test = quartDeTour(test);
+	   afficheTableau(test);
+	   
+   }
+	static int[][] quartDeTour(int[][] tab){
+		int [][] t= new int[tab[0].length][tab.length];
+		for(int i =0; i<tab.length;i++) {
+			for(int j =0 ;j<tab[0].length;j++) {
+				t[j][i] = tab[i][j];
+			}
+		}
+		return t;
+	}
    
     static void afficheTableau(int[][]tab) {
 	   for (int i=0; i<tab.length;i++){
@@ -192,11 +218,12 @@ class Test
    }
    public static void main(String[] args)
 	 {
-		//testHeap();
-		//testGraph();
-		//testWritepgm();
-	   //testInterest();
-		//testTographe();
-	   //testDijkstra();
+		/*testHeap();
+		testGraph();
+		testWritepgm();
+		testInterest();*/
+		testTographe();
+	   /*testDijkstra();
+	   testquartDeTour();*/
 	 }
 }
